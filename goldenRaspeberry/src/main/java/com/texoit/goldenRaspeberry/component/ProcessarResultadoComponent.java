@@ -95,7 +95,8 @@ public class ProcessarResultadoComponent {
 				ganhador.clear();
 				ganhador.add(produtor.getDto());
 			} else if(produtor.getIntervaloPremio() == maximo) {
-				ganhador.add(produtor.getDto());
+				if(!ganhador.contains(produtor.getDto()))
+					ganhador.add(produtor.getDto());
 			}
 		}
 		
