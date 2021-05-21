@@ -86,7 +86,8 @@ public class ProcessarArquivoComponent {
 		
 		if (estudios != null && !estudios.isEmpty()) 
 			for (String estudio : estudios) {
-				String nomeEstudio = estudio.replaceAll("^\\s+", "");
+				String nomeEstudio = estudio.replaceAll("\\s+$", "");
+				nomeEstudio = nomeEstudio.replaceAll("^\\s+", "");
 				Estudios estudioDB = estudioRepository.findByNome(nomeEstudio);
 				if (estudioDB == null) {
 					listaEstudios.add(estudioRepository.saveAndFlush(new Estudios(nomeEstudio)));
@@ -105,9 +106,10 @@ public class ProcessarArquivoComponent {
 		List<String> produtores = new Utils().separarNomesVirgulasAnd(nomes);
 		
 		if (produtores != null && !produtores.isEmpty()) {
-			for (String estudio : produtores) {
-				if(!estudio.trim().isEmpty()) {
-					String nomeProdutor = estudio.replaceAll("^\\s+", "");
+			for (String produtor : produtores) {
+				if(!produtor.trim().isEmpty()) {
+					String nomeProdutor = produtor.replaceAll("\\s+$", "");
+					nomeProdutor = nomeProdutor.replaceAll("^\\s+", "");
 					Produtores produtorDB = produtorRepository.findByNome(nomeProdutor);
 					if (produtorDB == null) {
 						listaProdutores.add(produtorRepository.saveAndFlush(new Produtores(nomeProdutor, new Utils().verificaGanhouPremio(ganhou) ? 1 : 0)));

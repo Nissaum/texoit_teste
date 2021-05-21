@@ -60,7 +60,6 @@ public class GanhadorDTO {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + followingWin;
-		result = prime * result + interval;
 		result = prime * result + previousWin;
 		result = prime * result
 				+ ((producer == null) ? 0 : producer.hashCode());
@@ -78,8 +77,6 @@ public class GanhadorDTO {
 		GanhadorDTO other = (GanhadorDTO) obj;
 		if (followingWin != other.followingWin)
 			return false;
-		if (interval != other.interval)
-			return false;
 		if (previousWin != other.previousWin)
 			return false;
 		if (producer == null) {
@@ -89,5 +86,7 @@ public class GanhadorDTO {
 			return false;
 		return true;
 	}
+
+	
 
 }

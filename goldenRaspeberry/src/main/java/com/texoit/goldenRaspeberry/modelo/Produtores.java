@@ -1,6 +1,9 @@
 package com.texoit.goldenRaspeberry.modelo;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
-
-import com.texoit.goldenRaspeberry.dto.GanhadorDTO;
 
 /**
  * Produtores
@@ -28,9 +29,11 @@ public class Produtores {
 	private List<Filme> filmes;
 	private Integer vezesPremiado;
 	@Transient
-	private Integer intervaloPremio;
+	private Integer anoUltimoPremio = 0;
 	@Transient
-	private GanhadorDTO dto = new GanhadorDTO();
+	private List<Integer> intervalosPremios = new ArrayList<Integer>();
+	@Transient
+	private Map<Integer,AnosPremiacao> anosPremiacoesIntervalo = new HashMap<Integer,AnosPremiacao>();
 	
 	public Produtores() {
 	}
@@ -103,20 +106,29 @@ public class Produtores {
 		this.filmes = filmes;
 	}
 
-	public Integer getIntervaloPremio() {
-		return intervaloPremio;
+	public List<Integer> getIntervalosPremios() {
+		return intervalosPremios;
 	}
 
-	public void setIntervaloPremio(Integer intervaloPremio) {
-		this.intervaloPremio = intervaloPremio;
+	public void setIntervalosPremios(List<Integer> intervalosPremios) {
+		this.intervalosPremios = intervalosPremios;
 	}
 
-	public GanhadorDTO getDto() {
-		return dto;
+	public Map<Integer, AnosPremiacao> getAnosPremiacoesIntervalo() {
+		return anosPremiacoesIntervalo;
 	}
 
-	public void setDto(GanhadorDTO dto) {
-		this.dto = dto;
+	public void setAnosPremiacoesIntervalo(
+			Map<Integer, AnosPremiacao> anosPremiacoesIntervalo) {
+		this.anosPremiacoesIntervalo = anosPremiacoesIntervalo;
+	}
+
+	public Integer getAnoUltimoPremio() {
+		return anoUltimoPremio;
+	}
+
+	public void setAnoUltimoPremio(Integer anoUltimoPremio) {
+		this.anoUltimoPremio = anoUltimoPremio;
 	}
 	
 	
